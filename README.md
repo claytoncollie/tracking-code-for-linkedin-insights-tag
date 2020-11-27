@@ -1,15 +1,13 @@
 # Tracking Code For Linkedin Insights Tag
 
-Tracking Code For Linkedin Insights Tag is a simple, lightweight WordPress plugin for inserting your Linkedin Insights Tag Universal Analytics tracking code. The plugin does one thing and one thing only; prints the standard Linkedin Insights Tag tacking script to the `<head>` of your website. To insert your measurement ID, navigate to Settings > General and then scroll to the bottom of the page.
-
-This plugin will not work with Linkedin Insights Tag 4; only the Universal Analytics version. 
+Tracking Code For Linkedin Insights Tag is a simple, lightweight WordPress plugin for inserting your Linkedin Insights Tag tracking code. The plugin does one thing and one thing only; prints the standard Linkedin Insights Tag tacking script to the `<body>` of your website. To insert your partner ID, navigate to Settings > General and then scroll to the bottom of the page.
 
 ### Getting Started
 
 1. Upload `tracking-code-for-linkedin-insights-tag` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Navigate to Settings > General > scroll to the bottom of the page
-4. Insert your measurement ID
+4. Insert your partner ID
 5. Save your changes
 
 ### Composer
@@ -18,20 +16,20 @@ This plugin will not work with Linkedin Insights Tag 4; only the Universal Analy
 
 ### Filters
 
-If you want to set the measurement ID without using the wp-admin user interface, use the filter below.
+If you want to set the partner ID without using the wp-admin user interface, use the filter below.
 
 ```php
 add_filter(
 	'tracking_code_for_linkedin_insights_tag_id',
 	/**
-	 * Set Linkedin Insights Tag measurement ID.
+	 * Set Linkedin Insights Tag partner ID.
 	 *
-	 * @param string $measurement_id Measurement ID.
+	 * @param string $partner_id Partner ID.
 	 *
 	 * @return string
 	 */
-	function ( $measurement_id ) {
-		return 'UA-7654321';
+	function ( $partner_id ) {
+		return '1234567';
 	}
 );
 ```
@@ -44,7 +42,7 @@ The plugins I have used in the past to solve this problem have too many features
 
 ##### Where is the tracking code inserted?
 
-The tracking code is inserted into the `<head>` section.
+The tracking code is inserted into the `<body>` section.
 
 ##### Will this plugin slow down my website?
 

@@ -12,7 +12,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 add_action( 'admin_init', 'tracking_code_for_linkedin_insights_tag_add_settings_field', 10, 0 );
 /**
- * Register the settings field for the measurement ID.
+ * Register the settings field for the partner ID.
  *
  * @return void
  * @since 1.0.0
@@ -28,7 +28,7 @@ function tracking_code_for_linkedin_insights_tag_add_settings_field() {
 			'id'          => 'tracking-code-for-linkedin-insights-tag',
 			'name'        => 'tracking_code_for_linkedin_insights_tag',
 			'value'       => get_option( 'tracking_code_for_linkedin_insights_tag', '' ),
-			'description' => esc_html__( 'Enter your Linkedin Insights Tag measurement ID eg. UA-1234567', 'tracking-code-for-linkedin-insights-tag' ),
+			'description' => esc_html__( 'Enter your Linkedin Insights Tag partner ID eg. 1234567', 'tracking-code-for-linkedin-insights-tag' ),
 		)
 	);
 
@@ -37,7 +37,7 @@ function tracking_code_for_linkedin_insights_tag_add_settings_field() {
 		'tracking_code_for_linkedin_insights_tag',
 		array(
 			'type'              => 'string',
-			'description'       => esc_html__( 'Linkedin Insights Tag measurement ID', 'tracking-code-for-linkedin-insights-tag' ),
+			'description'       => esc_html__( 'Linkedin Insights Tag partner ID', 'tracking-code-for-linkedin-insights-tag' ),
 			'sanitize_callback' => 'sanitize_text_field',
 			'show_in_rest'      => true,
 			'default'           => '',
@@ -46,7 +46,7 @@ function tracking_code_for_linkedin_insights_tag_add_settings_field() {
 }
 
 /**
- * Text field for measurement ID.
+ * Text field for partner ID.
  *
  * @param array $args The field settings.
  * @return void

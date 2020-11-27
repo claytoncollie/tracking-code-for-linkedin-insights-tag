@@ -10,7 +10,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-add_action( 'wp_head', 'tracking_code_for_linkedin_insights_tag_do_the_script', 1, 0 );
+add_action( 'wp_footer', 'tracking_code_for_linkedin_insights_tag_do_the_script', 99, 0 );
 /**
  * Output the tracking code snippet to the frontend.
  *
@@ -19,31 +19,37 @@ add_action( 'wp_head', 'tracking_code_for_linkedin_insights_tag_do_the_script', 
  */
 function tracking_code_for_linkedin_insights_tag_do_the_script() {
 	/**
-	 * Filter the measurement_id variable to support other methods of setting this value.
+	 * Filter the partner_id variable to support other methods of setting this value.
 	 *
-	 * @param string $measurement_id The Linkedin Insights Tag measurement ID.
+	 * @param string $partner_id The Linkedin Insights Tag partner ID.
 	 * @return string
 	 * @since 1.0.0
 	 */
-	$measurement_id = apply_filters( 'tracking_code_for_linkedin_insights_tag_id', get_option( 'tracking_code_for_linkedin_insights_tag', '' ) );
+	$partner_id = apply_filters( 'tracking_code_for_linkedin_insights_tag_id', get_option( 'tracking_code_for_linkedin_insights_tag', '' ) );
 
-	if ( '' === $measurement_id ) {
+	if ( '' === $partner_id ) {
 		return;
 	}
 
 	printf(
 		// phpcs:disable
 		'
-		<!-- Global site tag (gtag.js) - Linkedin Insights Tag -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=%1$s"></script>
-		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag("js", new Date());
-		gtag("config", "%1$s");
+		<script type="text/javascript">
+		_linkedin_partner_id = "%1$s";
+		window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+		window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+		</script><script type="text/javascript">
+		(function(){var s = document.getElementsByTagName("script")[0];
+		var b = document.createElement("script");
+		b.type = "text/javascript";b.async = true;
+		b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+		s.parentNode.insertBefore(b, s);})();
 		</script>
+		<noscript>
+		<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=%1$s&fmt=gif" />
+		</noscript>
 		',
 		// phpcs:enable
-		esc_attr( $measurement_id )
+		esc_attr( $partner_id )
 	);
 }
