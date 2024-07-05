@@ -3,7 +3,7 @@ Contributors: claytoncollie
 Donate link: https://www.claytoncollie.com/
 Tags: linkedin, insights tag, analytics, tracking code, tracking snippet
 Requires at least: 4.8
-Tested up to: 5.6.0
+Tested up to: 6.6.0
 Requires PHP: 5.6
 Stable tag: 1.0.0
 License: GPLv3 or later
