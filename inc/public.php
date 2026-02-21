@@ -5,27 +5,19 @@
  * @package Tracking_Code_For_Linkedin_Insights_Tag
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
+namespace Tracking_Code_For_Linkedin_Insights_Tag;
 
-add_action( 'wp_footer', 'tracking_code_for_linkedin_insights_tag_do_the_script', 99, 0 );
+use function Tracking_Code_For_Linkedin_Insights_Tag\get_the_id;
+
+add_action( 'wp_footer', __NAMESPACE__ . '\tracking_script', 99 );
 /**
  * Output the tracking code snippet to the frontend.
  *
  * @return void
  * @since 1.0.0
  */
-function tracking_code_for_linkedin_insights_tag_do_the_script() {
-	/**
-	 * Filter the partner_id variable to support other methods of setting this value.
-	 *
-	 * @param string $partner_id The Linkedin Insights Tag partner ID.
-	 * @return string
-	 * @since 1.0.0
-	 */
-	$partner_id = apply_filters( 'tracking_code_for_linkedin_insights_tag_id', get_option( 'tracking_code_for_linkedin_insights_tag', '' ) );
+function tracking_script() : void {
+	$partner_id = get_the_id();
 
 	if ( '' === $partner_id ) {
 		return;
